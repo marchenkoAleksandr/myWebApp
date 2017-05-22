@@ -9,7 +9,7 @@
     <artifactId>mywebapp</artifactId>
     <version>1.0</version>
     <name>My Online Database</name>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>1.8</java.version>
