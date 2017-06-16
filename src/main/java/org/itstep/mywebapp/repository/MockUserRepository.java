@@ -1,9 +1,11 @@
-package org.itstep.mywebapp;
+package org.itstep.mywebapp.repository;
+
+import org.itstep.mywebapp.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class UserRepository {
+public class MockUserRepository {
 
     private List<User> userList = new ArrayList<>();
 
@@ -13,7 +15,7 @@ class UserRepository {
 
     }
 
-    List<User> getAll() {
+    public List<User> getAll() {
         return userList;
     }
 
