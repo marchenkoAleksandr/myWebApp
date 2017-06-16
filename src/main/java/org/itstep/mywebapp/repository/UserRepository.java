@@ -9,4 +9,8 @@ public interface UserRepository {
     List<User> getAll();
 
     void delete(Integer id);
+
+    User get(Integer id);
+
+    void save(User user);
 }

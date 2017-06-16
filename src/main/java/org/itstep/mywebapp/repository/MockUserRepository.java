@@ -26,5 +26,15 @@ public class MockUserRepository implements UserRepository {
         users.remove(id);
     }
 
+    @Override
+    public User get(Integer id) {
+        return users.get(id);
+    }
+
+    @Override
+    public void save(User user) {
+        users.put(user.getId(), user);
+    }
+
 
 }

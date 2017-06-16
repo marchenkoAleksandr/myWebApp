@@ -21,11 +21,18 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action != null) {
             Integer id = Integer.valueOf(req.getParameter("id"));
-            service.delete(id);
-            resp.sendRedirect("users"); // запрос возвращается через бразуер, как новый, атрибуты не сохраняются
+            if (action.equals("delete")) {
+                service.delete(id);
+                resp.sendRedirect("users"); // запрос возвращается через бразуер, как новый, атрибуты не сохраняются
+            } else if (action.equals("update")) {
+                User user = service.get(id);
+                req.setAttribute("user", user);
+                req.getRequestDispatcher("/editUser.jsp").forward(req, resp);
+            }
+
+
         } else {
             List<User> userList = service.getAll();
             req.setAttribute("userList", userList);
@@ -34,4 +41,14 @@ public class UserServlet extends HttpServlet {
 
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        User user = service.get(id);
+        user.setName(req.getParameter("name"));
+        service.save(user);
+        resp.sendRedirect("users");
+
+    }
 }

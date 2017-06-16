@@ -1,5 +1,3 @@
-<%@ page import="org.itstep.mywebapp.model.User" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
@@ -15,12 +13,13 @@
             <th>NAME</th>
             <th>REGISTERED</th>
         </tr>
-        <c:forEach items="${userList}" var="user">
+        <c:forEach var="user" items="${userList}">
         <jsp:useBean id="user" type="org.itstep.mywebapp.model.User"/>
         <tr>
             <td><%=user.getId()%></td>
             <td><%=user.getName()%></td>
             <td><%=user.getRegistered()%></td>
+            <td><a href="users?action=update&id=${user.id}">UPDATE</a></td>
             <td><a href="users?action=delete&id=${user.id}">DELETE</a></td>
         </tr>
         </c:forEach>
