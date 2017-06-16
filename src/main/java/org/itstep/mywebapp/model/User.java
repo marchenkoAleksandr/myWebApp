@@ -10,6 +10,9 @@ public class User {
 
     private LocalDateTime registered;
 
+    public User() {
+    }
+
     public User(String name) {
         this.name = name;
     }
@@ -52,4 +55,9 @@ public class User {
         this.registered = registered;
     }
 
+    public User(Integer id, String name, LocalDateTime registered) {
+        this.id = id;
+        this.name = name;
+        this.registered = registered;
+    }
 }

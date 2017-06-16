@@ -2,21 +2,28 @@ package org.itstep.mywebapp.repository;
 
 import org.itstep.mywebapp.model.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class MockUserRepository {
+public class MockUserRepository implements UserRepository {
 
-    private List<User> userList = new ArrayList<>();
+    private Map<Integer, User> users = new ConcurrentHashMap<>();
 
     {
-        userList.add(new User("Mike"));
-        userList.add(new User("Natasha"));
-
+        users.put(1, new User(1,"Mike", LocalDateTime.now()));
+        users.put(2, new User(2, "Natasha", LocalDateTime.now()));
     }
 
     public List<User> getAll() {
-        return userList;
+        return new ArrayList<>(users.values());
+    }
+
+    @Override
+    public void delete(Integer id) {
+        users.remove(id);
     }
 
 
