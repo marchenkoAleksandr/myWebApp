@@ -3,6 +3,8 @@ package org.itstep.mywebapp.web;
 import org.itstep.mywebapp.model.User;
 import org.itstep.mywebapp.service.UserService;
 import org.itstep.mywebapp.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +17,22 @@ import java.util.List;
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
 
-    private UserService service = new UserServiceImpl();
+    private UserService service;
+
+    private ClassPathXmlApplicationContext context;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        context = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        service = context.getBean(UserService.class);
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        context.close();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

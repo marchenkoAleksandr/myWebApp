@@ -3,6 +3,8 @@ package org.itstep.mywebapp.repository;
 import org.itstep.mywebapp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Repository
 public class MockUserRepository implements UserRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(MockUserRepository.class);
