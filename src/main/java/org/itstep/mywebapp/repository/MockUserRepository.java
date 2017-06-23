@@ -7,14 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MockUserRepository implements UserRepository {
 
     private Map<Integer, User> users = new ConcurrentHashMap<>();
 
+    private AtomicInteger idCounter = new AtomicInteger(1);
+
     {
-        users.put(1, new User(1,"Mike", LocalDateTime.now()));
-        users.put(2, new User(2, "Natasha", LocalDateTime.now()));
+        save(new User("Mike"));
+        save(new User("Natasha"));
     }
 
     public List<User> getAll() {
@@ -32,9 +35,13 @@ public class MockUserRepository implements UserRepository {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
+        if (user.getId() == null) {
+            user.setId(idCounter.getAndIncrement());
+            user.setRegistered(LocalDateTime.now());
+        }
         users.put(user.getId(), user);
+        return user;
     }
-
 
 }

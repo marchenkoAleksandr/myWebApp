@@ -12,5 +12,5 @@ public interface UserRepository {
 
     User get(Integer id);
 
-    void save(User user);
+    User save(User user);
 }

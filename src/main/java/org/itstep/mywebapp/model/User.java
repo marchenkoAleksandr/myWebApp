@@ -17,6 +17,11 @@ public class User {
         this.name = name;
     }
 
+    public User(String name, LocalDateTime registered) {
+        this.name = name;
+        this.registered = registered;
+    }
+
     @Override
     public String toString() {
         return "User{" +

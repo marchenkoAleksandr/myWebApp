@@ -24,5 +24,7 @@
         </tr>
         </c:forEach>
     </table>
+
+    <a href="users?action=create">ADD</a>
 </body>
 </html>

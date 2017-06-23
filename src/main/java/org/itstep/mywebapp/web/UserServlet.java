@@ -21,7 +21,15 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action = req.getParameter("action");
+
         if (action != null) {
+            if ("create".equals(action)){
+                User user = service.save(new User());
+                req.setAttribute("user", user);
+                req.getRequestDispatcher("/editUser.jsp").forward(req, resp);
+                return;
+            }
+
             Integer id = Integer.valueOf(req.getParameter("id"));
             if (action.equals("delete")) {
                 service.delete(id);
