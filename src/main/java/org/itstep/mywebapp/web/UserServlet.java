@@ -14,12 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/users")
+@WebServlet(loadOnStartup = 1, value = "/users")
 public class UserServlet extends HttpServlet {
 
     private UserService service;
 
     private ClassPathXmlApplicationContext context;
+
+//    public void setService(UserService service) {
+//        this.service = service;
+//    }
 
     @Override
     public void init() throws ServletException {

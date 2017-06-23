@@ -7,6 +7,7 @@
     <!--<servlet>-->
         <!--<servlet-name>users</servlet-name>-->
         <!--<servlet-class>org.itstep.mywebapp.web.UserServlet</servlet-class>-->
+        <!--<load-on-startup>1</load-on-startup> &lt;!&ndash;создавать при старте&ndash;&gt;-->
     <!--</servlet>-->
 
     <!--<servlet-mapping>-->

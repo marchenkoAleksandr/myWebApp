@@ -12,7 +12,8 @@ public class SpringExample {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-app.xml");
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
 
-        Arrays.stream(beanDefinitionNames).forEach(System.out::println);
+        System.out.println(Arrays.toString(beanDefinitionNames));
+//        Arrays.stream(beanDefinitionNames).forEach(System.out::println); // java 8 example
 
         UserService userService = context.getBean(UserService.class);
         System.out.println(userService.getAll());
