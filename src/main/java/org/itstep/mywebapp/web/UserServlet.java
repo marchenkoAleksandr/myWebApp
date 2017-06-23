@@ -3,6 +3,8 @@ package org.itstep.mywebapp.web;
 import org.itstep.mywebapp.model.User;
 import org.itstep.mywebapp.service.UserService;
 import org.itstep.mywebapp.service.UserServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +17,16 @@ import java.util.List;
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
 
+    private static final Logger LOG = LoggerFactory.getLogger(UserServlet.class);
+
     private UserService service = new UserServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action = req.getParameter("action");
+
+        LOG.debug("Get request wit action = {} and id = {}", action, req.getParameter("id"));
 
         if (action != null) {
             if ("create".equals(action)){
